@@ -1012,6 +1012,20 @@ namespace cereal
   {
     ar.loadSize( st.size );
   }
+
+  //! Saving binary data
+  template <class T> inline
+  void CEREAL_SAVE_FUNCTION_NAME( JSONOutputArchive & ar, BinaryData<T> const & bd)
+  {
+    ar.saveBinaryValue( bd.data, static_cast<std::streamsize>( bd.size ) );
+  }
+
+  //! Loading binary data
+  template <class T> inline
+  void CEREAL_LOAD_FUNCTION_NAME( JSONInputArchive & ar, BinaryData<T> & bd)
+  {
+    ar.loadBinaryValue(bd.data, static_cast<std::streamsize>( bd.size ) );
+  }
 } // namespace cereal
 
 // register archives for polymorphic support
